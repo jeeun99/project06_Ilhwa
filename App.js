@@ -6,6 +6,7 @@ import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 
 import { NativeBaseProvider, extendTheme } from "native-base";
+import Intro from "./pages/Intro";
 // Define the config
 const config = {
   useSystemColorMode: false,
@@ -15,6 +16,7 @@ const config = {
 export const theme = extendTheme({ config });
 
 export default function App() {
+  const [ready, setReady] = useState(false);
   const loadFont = () => {
     setTimeout(async () => {
       await Font.loadAsync({
@@ -30,15 +32,22 @@ export default function App() {
         KCCChassam: require("native-base/Fonts/KCCChassam.ttf"),
         ...Ionicons.font,
       });
+      setReady(true);
     }, 1000);
   };
   useEffect(() => {
     loadFont();
   }, []);
-  return (
+  return ready ? (
     <NativeBaseProvider>
       <NavigationContainer>
         <StackNavigator />
+      </NavigationContainer>
+    </NativeBaseProvider>
+  ) : (
+    <NativeBaseProvider>
+      <NavigationContainer>
+        <Intro />
       </NavigationContainer>
     </NativeBaseProvider>
   );
