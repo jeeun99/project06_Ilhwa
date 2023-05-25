@@ -45,7 +45,7 @@ export default function SignInPage({ navigation }) {
     }, 10);
     setTimeout(() => {
       setReady(true);
-    }, 2500);
+    }, 1500);
   }, []);
 
   return ready ? (

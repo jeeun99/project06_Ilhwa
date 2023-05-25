@@ -1,9 +1,163 @@
-import { Box, Text } from "native-base";
+import {
+  Box,
+  Text,
+  Image,
+  HStack,
+  VStack,
+  IconButton,
+  Flex,
+  Input,
+} from "native-base";
+import {
+  StyleSheet,
+  ImageBackground,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import { useEffect, useState } from "react";
+import { Entypo } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+import HeaderComponent from "../components/HeaderComponent";
 
-export default function SearchPage() {
+const pagelogo = require("../assets/img/pagelogo.png");
+
+export default function SearchPage({ navigation }) {
+  const [input, setInput] = useState("");
+  const goSDetail = () => {
+    navigation.navigate("SearchDetailPage", { input: input });
+  };
   return (
-    <Box>
-      <Text>SearchPage</Text>
+    <Box style={styles.container}>
+      <HeaderComponent navigation={navigation} />
+      <HStack
+        alignItems={"center"}
+        justifyContent="space-between"
+        mt={8}
+        px={8}
+      >
+        <Input
+          width={"80%"}
+          borderWidth={1}
+          borderStyle="dashed"
+          borderColor={"#000"}
+          borderRadius={10}
+          bgColor="#F6F6F6"
+          value={input}
+          // variant={"filled"}
+        />
+        <TouchableOpacity style={styles.search} onPress={goSDetail}>
+          <Entypo name="magnifying-glass" size={24} color="black" />
+        </TouchableOpacity>
+      </HStack>
+      <Box my={8} px={8}>
+        <Text mb={4} fontFamily="SUITERegular" fontSize="16" color={"#FE9E98"}>
+          이렇게 검색해보세요!
+        </Text>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <TouchableOpacity
+            style={styles.searchbtn}
+            onPress={() => setInput("메뉴판")}
+          >
+            <Text fontFamily={"KCCChassam"} fontSize={12}>
+              메뉴판
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.searchbtn}
+            onPress={() => setInput("숙소")}
+          >
+            <Text fontFamily={"KCCChassam"} fontSize={12}>
+              숙소
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.searchbtn}
+            onPress={() => setInput("가격")}
+          >
+            <Text fontFamily={"KCCChassam"} fontSize={12}>
+              가격
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.searchbtn}
+            onPress={() => setInput("시간")}
+          >
+            <Text fontFamily={"KCCChassam"} fontSize={12}>
+              시간
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.searchbtn}
+            onPress={() => setInput("지하철")}
+          >
+            <Text fontFamily={"KCCChassam"} fontSize={12}>
+              지하철
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.searchbtn}
+            onPress={() => setInput("결제")}
+          >
+            <Text fontFamily={"KCCChassam"} fontSize={12}>
+              결제
+            </Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </Box>
+      <Box my={4} px={8}>
+        <Text mb={4} fontFamily="SUITERegular" fontSize="16" color={"#FE9E98"}>
+          인기 검색어
+        </Text>
+
+        <Box borderRadius={20} overflow="hidden">
+          <LinearGradient
+            style={styles.btnLogIn}
+            colors={["#FED2CF", "#FEECD2"]}
+            start={{ x: 0.3, y: 0.3 }}
+            end={{ x: 1, y: 1 }}
+          >
+            <Box px={4} py={8}>
+              <Text pb={4} fontFamily="KCCChassam" fontSize={12}>
+                1. 메뉴판 달라고 할 때
+              </Text>
+              <Text pb={4} fontFamily="KCCChassam" fontSize={12}>
+                2. 버스탈 때
+              </Text>
+              <Text pb={4} fontFamily="KCCChassam" fontSize={12}>
+                3. 영업시간이 몇시까지인지 물어볼 때
+              </Text>
+              <Text pb={4} fontFamily="KCCChassam" fontSize={12}>
+                4. 카드 결제
+              </Text>
+              <Text fontFamily="KCCChassam" fontSize={12}>
+                5. 예약할 때
+              </Text>
+            </Box>
+          </LinearGradient>
+        </Box>
+      </Box>
     </Box>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    flex: 1,
+    backgroundColor: "white",
+  },
+  searchbtn: {
+    backgroundColor: "#FED2CF",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    marginRight: 16,
+    borderRadius: 16,
+  },
+  search: {
+    width: 40,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: "#fed2cf",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

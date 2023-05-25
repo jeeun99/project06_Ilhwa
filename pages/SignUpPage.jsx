@@ -44,6 +44,7 @@ export default function SignUpPage({ navigation }) {
       ),
     });
   }, []);
+
   return (
     <ImageBackground source={bgImg} style={styles.bgImage}>
       <Box mt={8} px={8} style={styles.container}>

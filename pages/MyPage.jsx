@@ -10,13 +10,11 @@ const mypageImage = require("../assets/img/mypageimg.png");
 
 export default function MyPage({ navigation, route }) {
   // console.log(route);
-  const goStudy = () => {
-    navigation.navigate("StudyPage");
-  };
+
   const goLogin = () => {
     navigation.navigate("SignInPage");
   };
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
 
   return (
     <Box style={styles.container}>
@@ -70,46 +68,7 @@ export default function MyPage({ navigation, route }) {
               </VStack>
             </HStack>
           </Box>
-          <Box
-            mt={8}
-            style={styles.imgcon}
-            borderRadius={20}
-            overflow={"hidden"}
-          >
-            <Image style={styles.imgs} source={mypageImage} alt="img" />
-            <Box
-              w={"100%"}
-              h={"100%"}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Text
-                color={"#656565"}
-                fontFamily={"SUITEBold"}
-                fontSize="14"
-                pb={1}
-              >
-                매일 발전하는 내 일본어!
-              </Text>
-              <Text
-                color={"#656565"}
-                fontFamily={"SUITEBold"}
-                fontSize="14"
-                pb={2}
-              >
-                일화와 함께 학습해보세요.
-              </Text>
-              <TouchableOpacity style={styles.goStudy} onPress={goStudy}>
-                <Text
-                  fontFamily={"SUITERegular"}
-                  fontSize={"12"}
-                  color={"#2c2c2c"}
-                >
-                  학습 진도 확인하기
-                </Text>
-              </TouchableOpacity>
-            </Box>
-          </Box>
+
           <Box
             mt="22"
             bgColor={"#f6f6f6"}

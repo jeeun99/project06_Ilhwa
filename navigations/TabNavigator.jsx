@@ -1,7 +1,10 @@
 import react from "react";
 import { Platform, StyleSheet, Text } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import MyPage from "../pages/MyPage";
 import MainPage from "../pages/MainPage";
@@ -34,7 +37,7 @@ const TabNavigator = () => {
                 name={iconName}
                 color={focused ? "tomato" : "#2C2C2C"}
                 // style={focused ? styles.focus : null}
-                size={27}
+                size={25}
               />
             );
           },
@@ -62,17 +65,17 @@ const TabNavigator = () => {
               </Text>
             );
           },
+
           tabBarActiveTintColor: "tomato",
           tabBarInactiveTintColor: "gray",
           // Screen name 텍스트 안보이게 하기
-          // tabBarShowLabel: false,
+          tabBarShowLabel: true,
           tabBarStyle: [
             {
-              height: 70,
+              height: 60,
               display: "flex",
             },
           ],
-
           headerShown: false,
         })
         // tabnavigator에서 제공하는 tabBarIcon기능
