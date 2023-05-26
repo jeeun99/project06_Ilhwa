@@ -8,6 +8,9 @@ import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
 import SearchDetailPage from "../pages/SearchDetailPage";
 import AccommodationPage from "../pages/AccommodationPage";
+import FoodPage from "../pages/FoodPage";
+import ShoppingPage from "../pages/ShoppingPage";
+import TrafficPage from "../pages/TrafficPage";
 //스택 네비게이션 라이브러리가 제공해주는 여러 기능이 담겨있는 객체를 사용합니다
 //항상 상단에 선언하고 시작하는게 규칙
 const Stack = createStackNavigator();
@@ -25,6 +28,9 @@ const StackNavigator = () => {
       <Stack.Screen name="TabNavigator" component={TabNavigator} />
       <Stack.Screen name="SearchDetailPage" component={SearchDetailPage} />
       <Stack.Screen name="AccommodationPage" component={AccommodationPage} />
+      <Stack.Screen name="FoodPage" component={FoodPage} />
+      <Stack.Screen name="ShoppingPage" component={ShoppingPage} />
+      <Stack.Screen name="TrafficPage" component={TrafficPage} />
     </Stack.Navigator>
   );
 };

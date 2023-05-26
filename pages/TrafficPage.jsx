@@ -1,13 +1,11 @@
-import { Box, Center, Text, HStack } from "native-base";
+import { Box, Center, Text } from "native-base";
 import { useEffect, useState } from "react";
 import SwipeCardComponent from "../components/SwipeCardComponent";
 import { Entypo } from "@expo/vector-icons";
 import datas from "../data.json";
-import { ScrollView, View } from "react-native";
-import ImageBlurLoading from "react-native-image-blur-loading";
-import SlideComponent from "../components/SlideComponent";
+import { ScrollView } from "react-native";
 
-export default function AccommodationPage({ navigation }) {
+export default function TrafficPage({ navigation }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -39,20 +37,13 @@ export default function AccommodationPage({ navigation }) {
     return null;
   }
 
-  const accommodation = data.filter((item) => item.category === "숙박");
+  const traffic = data.filter((item) => item.category === "교통");
   //   console.log(accommodation);
-
   return (
     <ScrollView>
       <Box px={8} flex={1} bgColor="#fff">
-        <Box mt={8} height={"150px"}>
-          <HStack>
-            <Text>대표 어휘</Text>
-          </HStack>
-          {/* <SlideComponent slideData={accommodation} /> */}
-        </Box>
         <Text>필수 어휘</Text>
-        {accommodation.map((item, i) => {
+        {traffic.map((item, i) => {
           return (
             <Box
               key={i}

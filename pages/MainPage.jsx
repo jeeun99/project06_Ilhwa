@@ -30,6 +30,15 @@ export default function MainPage({ navigation }) {
   const goAccommodation = () => {
     navigation.navigate("AccommodationPage");
   };
+  const goFoood = () => {
+    navigation.navigate("FoodPage");
+  };
+  const goShopping = () => {
+    navigation.navigate("ShoppingPage");
+  };
+  const goTraffic = () => {
+    navigation.navigate("TrafficPage");
+  };
 
   return (
     <Box px={8} style={styles.container}>
@@ -169,6 +178,7 @@ export default function MainPage({ navigation }) {
             <Text>숙박</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={goFoood}
             style={{
               justifyContent: "center",
               alignItems: "center",
@@ -194,6 +204,7 @@ export default function MainPage({ navigation }) {
         </HStack>
         <HStack pt={4} justifyContent={"space-around"}>
           <TouchableOpacity
+            onPress={goShopping}
             style={{ justifyContent: "center", alignItems: "center" }}
           >
             <Box
@@ -214,6 +225,7 @@ export default function MainPage({ navigation }) {
             <Text>쇼핑</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={goTraffic}
             style={{
               justifyContent: "center",
               alignItems: "center",

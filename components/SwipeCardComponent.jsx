@@ -13,12 +13,7 @@ import { Entypo } from "@expo/vector-icons";
 import { useEffect } from "react";
 
 function SwipeCardComponent({ item }) {
-  //   const [data, setData] = useState([]);
-  //   useEffect(() => {
-  //     setData(item);
-  //   }, []);
-  //   console.log(data);
-  console.log("날라가냐", item);
+  // console.log(item);
   const swipeAnimation = useRef(new Animated.Value(0)).current;
   const [like, setLike] = useState(false);
   const panResponder = useRef(
@@ -72,7 +67,7 @@ function SwipeCardComponent({ item }) {
         {...panResponder.panHandlers}
       >
         <HStack w={"100%"}>
-          <HStack w={"60%"} pl={3} alignItems={"center"} bgColor="#FFF0EF">
+          <HStack w={"60%"} p={3} alignItems={"center"} bgColor="#FFF0EF">
             <TouchableOpacity style={{ height: 32, width: 32 }}>
               <LinearGradient
                 colors={["#FED2CF", "#CDDBF5"]}
@@ -89,12 +84,12 @@ function SwipeCardComponent({ item }) {
                 <Entypo name="controller-play" size={24} color="white" />
               </LinearGradient>
             </TouchableOpacity>
-            <VStack pl={4}>
+            <VStack pl={2} mr={"6"}>
               <Text fontFamily="SUITERegular" fontSize="9" color={"#656565"}>
-                {/* {item.descjp} */}
+                {item.descjp}
               </Text>
               <Text fontFamily="SUITERegular" fontSize="12" color={"#2c2c2c"}>
-                {/* {item.translation} */}
+                {item.translation}
               </Text>
             </VStack>
           </HStack>
@@ -105,9 +100,10 @@ function SwipeCardComponent({ item }) {
             bgColor="#FED2CF"
             justifyContent={"center"}
             alignItems="center"
+            px={2}
           >
             <Text fontFamily="KCCChassam" fontSize="12" color={"#2c2c2c"}>
-              {/* {item.descko} */}
+              {item.descko}
             </Text>
           </Box>
         </HStack>
