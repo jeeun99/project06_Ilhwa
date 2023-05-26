@@ -1,4 +1,4 @@
-import { Box, Text, Image, HStack } from "native-base";
+import { Box, Text, Image, HStack, Slider, Center } from "native-base";
 import { useEffect } from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { Entypo } from "@expo/vector-icons";
@@ -116,6 +116,23 @@ export default function MainPage({ navigation }) {
             >
               현재 진도
             </Text>
+            <Box w="100%">
+              <Slider
+                w="3/4"
+                maxW="300"
+                defaultValue={70}
+                minValue={0}
+                maxValue={100}
+                accessibilityLabel="hello world"
+                step={10}
+              >
+                <Slider.Track>
+                  <Slider.FilledTrack />
+                </Slider.Track>
+                <Slider.Thumb />
+              </Slider>
+            </Box>
+            ;
             <HStack>
               <Text
                 color={"#656565"}

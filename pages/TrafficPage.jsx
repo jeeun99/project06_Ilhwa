@@ -1,16 +1,17 @@
-import { Box, Center, Text } from "native-base";
+import { Box, Text, HStack } from "native-base";
 import { useEffect, useState } from "react";
 import SwipeCardComponent from "../components/SwipeCardComponent";
 import { Entypo } from "@expo/vector-icons";
 import datas from "../data.json";
 import { ScrollView } from "react-native";
+import SlideComponent from "../components/SlideComponent";
 
 export default function TrafficPage({ navigation }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     navigation.setOptions({
-      title: "홈",
+      title: "교통",
       headerShown: true,
       headerStyle: {
         backgroundColor: "#fff",
@@ -42,24 +43,34 @@ export default function TrafficPage({ navigation }) {
   return (
     <ScrollView>
       <Box px={8} flex={1} bgColor="#fff">
-        <Text>필수 어휘</Text>
-        {traffic.map((item, i) => {
-          return (
-            <Box
-              key={i}
-              backgroundColor={"#F6F6F6"}
-              w={"100%"}
-              h="60px"
-              overflow={"hidden"}
-              borderRadius="10"
-              style={{
-                marginTop: 12,
-              }}
-            >
-              <SwipeCardComponent item={item} />
-            </Box>
-          );
-        })}
+        <Box mt={8}>
+          <HStack>
+            <Text mb={"10px"}>대표 어휘</Text>
+          </HStack>
+          <Box w={"100%"} h={120}>
+            <SlideComponent data={traffic} bgname={"traffic"} />
+          </Box>
+        </Box>
+        <Box my={4}>
+          <Text>필수 어휘</Text>
+          {traffic.map((item, i) => {
+            return (
+              <Box
+                key={i}
+                backgroundColor={"#F6F6F6"}
+                w={"100%"}
+                h="60px"
+                overflow={"hidden"}
+                borderRadius="10"
+                style={{
+                  marginTop: 12,
+                }}
+              >
+                <SwipeCardComponent item={item} />
+              </Box>
+            );
+          })}
+        </Box>
       </Box>
     </ScrollView>
   );

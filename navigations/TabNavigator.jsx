@@ -33,12 +33,22 @@ const TabNavigator = () => {
               iconName += "search";
             }
             return (
-              <Ionicons
-                name={iconName}
-                color={focused ? "tomato" : "#2C2C2C"}
-                // style={focused ? styles.focus : null}
-                size={25}
-              />
+              <LinearGradient
+                style={focused ? styles.focused : styles.notFocused}
+                colors={
+                  focused
+                    ? ["#FED2CF", "#CDDBF5"]
+                    : ["transparent", "transparent"]
+                }
+                start={{ x: 0.1, y: 1 }}
+                end={{ x: 1, y: 0 }}
+              >
+                <Ionicons
+                  name={iconName}
+                  color={focused ? "#fff" : "#2C2C2C"}
+                  size={25}
+                />
+              </LinearGradient>
             );
           },
           tabBarLabel: ({ focused }) => {
@@ -69,10 +79,10 @@ const TabNavigator = () => {
           tabBarActiveTintColor: "tomato",
           tabBarInactiveTintColor: "gray",
           // Screen name 텍스트 안보이게 하기
-          tabBarShowLabel: true,
+          tabBarShowLabel: false,
           tabBarStyle: [
             {
-              height: 60,
+              height: 70,
               display: "flex",
             },
           ],
@@ -89,5 +99,18 @@ const TabNavigator = () => {
     </Tabs.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  focused: {
+    width: 73,
+    height: 45,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 30,
+  },
+  notFocused: {
+    backgroundColor: "transparent",
+  },
+});
 
 export default TabNavigator;

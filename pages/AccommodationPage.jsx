@@ -1,10 +1,9 @@
-import { Box, Center, Text, HStack } from "native-base";
+import { Box, Text, HStack } from "native-base";
 import { useEffect, useState } from "react";
 import SwipeCardComponent from "../components/SwipeCardComponent";
 import { Entypo } from "@expo/vector-icons";
 import datas from "../data.json";
-import { ScrollView, View } from "react-native";
-import ImageBlurLoading from "react-native-image-blur-loading";
+import { ScrollView } from "react-native";
 import SlideComponent from "../components/SlideComponent";
 
 export default function AccommodationPage({ navigation }) {
@@ -12,7 +11,7 @@ export default function AccommodationPage({ navigation }) {
 
   useEffect(() => {
     navigation.setOptions({
-      title: "홈",
+      title: "숙박",
       headerShown: true,
       headerStyle: {
         backgroundColor: "#fff",
@@ -45,30 +44,34 @@ export default function AccommodationPage({ navigation }) {
   return (
     <ScrollView>
       <Box px={8} flex={1} bgColor="#fff">
-        <Box mt={8} height={"150px"}>
+        <Box mt={8}>
           <HStack>
-            <Text>대표 어휘</Text>
+            <Text mb={"10px"}>대표 어휘</Text>
           </HStack>
-          {/* <SlideComponent slideData={accommodation} /> */}
+          <Box w={"100%"} h={120}>
+            <SlideComponent data={accommodation} bgname={"accommodation"} />
+          </Box>
         </Box>
-        <Text>필수 어휘</Text>
-        {accommodation.map((item, i) => {
-          return (
-            <Box
-              key={i}
-              backgroundColor={"#F6F6F6"}
-              w={"100%"}
-              h="60px"
-              overflow={"hidden"}
-              borderRadius="10"
-              style={{
-                marginTop: 12,
-              }}
-            >
-              <SwipeCardComponent item={item} />
-            </Box>
-          );
-        })}
+        <Box my={4}>
+          <Text>필수 어휘</Text>
+          {accommodation.map((item, i) => {
+            return (
+              <Box
+                key={i}
+                backgroundColor={"#F6F6F6"}
+                w={"100%"}
+                h="60px"
+                overflow={"hidden"}
+                borderRadius="10"
+                style={{
+                  marginTop: 12,
+                }}
+              >
+                <SwipeCardComponent item={item} />
+              </Box>
+            );
+          })}
+        </Box>
       </Box>
     </ScrollView>
   );
