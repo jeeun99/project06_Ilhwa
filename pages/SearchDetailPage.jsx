@@ -11,11 +11,18 @@ import { TouchableOpacity, StyleSheet } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import HeaderComponent from "../components/HeaderComponent";
-import CardComponent from "../components/CardComponent";
+import SwipeCardComponent from "../components/SwipeCardComponent";
+import data from "../data.json";
 
 export default function SearchDetailPage({ route, navigation }) {
+  const sentence = data.datas;
+  const [item, setItem] = useState([]);
   //   console.log(route);
   const input = route.params.input;
+  useEffect(() => {
+    setItem(sentence.filter((item) => item.title.includes(input)));
+  }, [input]);
+  console.log(item);
 
   return (
     <Box style={styles.container}>
@@ -41,9 +48,33 @@ export default function SearchDetailPage({ route, navigation }) {
           <Entypo name="magnifying-glass" size={24} color="black" />
         </TouchableOpacity>
       </HStack>
-      <Flex px={8} py={4} flexDirection={"row"}>
-        <CardComponent />
-      </Flex>
+      <Box px={8} py={4}>
+        <Text
+          pb={"10px"}
+          fontFamily="SUITERegular"
+          fontSize="16"
+          color={"#2c2c2c"}
+        >
+          검색결과
+        </Text>
+        {item.map((item, i) => {
+          return (
+            <Box
+              key={i}
+              backgroundColor={"#F6F6F6"}
+              w={"100%"}
+              h="60px"
+              overflow={"hidden"}
+              borderRadius="10"
+              style={{
+                marginTop: 12,
+              }}
+            >
+              <SwipeCardComponent item={item} />
+            </Box>
+          );
+        })}
+      </Box>
     </Box>
   );
 }

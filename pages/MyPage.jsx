@@ -1,4 +1,4 @@
-import { Box, Text, Image, HStack, VStack } from "native-base";
+import { Box, Text, Switch, Image, HStack, VStack } from "native-base";
 import { TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 import { useState } from "react";
@@ -87,49 +87,36 @@ export default function MyPage({ navigation, route }) {
             bgColor={"#f6f6f6"}
             w={"100%"}
             px={4}
-            py={"14"}
             borderRadius={"20"}
           >
             <HStack
-              pb={"14"}
               borderBottomColor={"#656565"}
               borderBottomWidth={0.3}
               justifyContent="space-between"
               alignItems="center"
             >
-              <HStack>
-                <Text>담은 문장</Text>
-                <Box
-                  ml={4}
-                  py={0.2}
-                  px={2}
-                  borderRadius={10}
-                  backgroundColor={"#cddbf5"}
-                >
-                  <Text color={"#fafafa"}>30</Text>
-                </Box>
-              </HStack>
-              <Entypo name="chevron-right" size={16} color="#2c2c2c" />
+              <Text>알림받기</Text>
+              <Switch defaultIsChecked colorScheme="rose" size={"sm"} />
             </HStack>
-            <HStack
-              pt={"14"}
-              justifyContent="space-between"
-              alignItems="center"
+            <HStack justifyContent="space-between" alignItems="center">
+              <Text>다크모드</Text>
+              <Switch colorScheme="rose" size={"sm"} />
+            </HStack>
+          </Box>
+          <Box mt="22">
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#ff5670",
+                paddingVertical: 10,
+                borderRadius: 30,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <HStack>
-                <Text>틀린 문제</Text>
-                <Box
-                  ml={4}
-                  py={0.2}
-                  px={2}
-                  borderRadius={10}
-                  backgroundColor={"#cddbf5"}
-                >
-                  <Text color={"#fafafa"}>5</Text>
-                </Box>
-              </HStack>
-              <Entypo name="chevron-right" size={16} color="#2c2c2c" />
-            </HStack>
+              <Text fontFamily={"SUITEBold"} fontSize={14} color={"#fff"}>
+                계정삭제
+              </Text>
+            </TouchableOpacity>
           </Box>
         </Box>
       ) : (

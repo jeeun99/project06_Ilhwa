@@ -39,6 +39,9 @@ export default function MainPage({ navigation }) {
   const goTraffic = () => {
     navigation.navigate("TrafficPage");
   };
+  const handleSliderChange = (newValue) => {
+    // 슬라이더 값 변경을 막기 위해 아무 작업도 하지 않습니다.
+  };
 
   return (
     <Box px={8} style={styles.container}>
@@ -107,24 +110,39 @@ export default function MainPage({ navigation }) {
             </HStack>
           </Box>
           <Box>
-            <Text
-              color={"#656565"}
-              fontFamily={"SUITEBold"}
-              fontSize="14"
-              pt={2}
-              pb={1}
-            >
-              현재 진도
-            </Text>
+            <HStack>
+              <Text
+                color={"#656565"}
+                fontFamily={"SUITEBold"}
+                fontSize="14"
+                pt={2}
+                pb={1}
+              >
+                현재 진도
+              </Text>
+              <Text
+                color={"#656565"}
+                fontFamily={"SUITEBold"}
+                fontSize="14"
+                pt={2}
+                pb={1}
+                pl={4}
+              >
+                40%
+              </Text>
+            </HStack>
             <Box w="100%">
               <Slider
-                w="3/4"
+                w="100%"
                 maxW="300"
-                defaultValue={70}
+                defaultValue={40}
                 minValue={0}
                 maxValue={100}
+                value={40}
                 accessibilityLabel="hello world"
                 step={10}
+                colorScheme="violet"
+                onChange={handleSliderChange}
               >
                 <Slider.Track>
                   <Slider.FilledTrack />
