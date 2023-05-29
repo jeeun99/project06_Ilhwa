@@ -121,26 +121,26 @@ export default function SearchPage({ navigation }) {
         <Box>
           <HStack>
             <TouchableOpacity
-              style={styles.searchbtn}
+              style={[styles.searchbtn, { backgroundColor: "#FF6A6A" }]}
               onPress={() => setInput("메뉴판")}
             >
-              <Text fontFamily={"KCCChassam"} fontSize={12}>
+              <Text color={"#fff"} fontFamily={"KCCChassam"} fontSize={12}>
                 메뉴판
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.searchbtn}
+              style={[styles.searchbtn, { backgroundColor: "#FF8A8A" }]}
               onPress={() => setInput("음식주문")}
             >
-              <Text fontFamily={"KCCChassam"} fontSize={12}>
+              <Text color={"#fff"} fontFamily={"KCCChassam"} fontSize={12}>
                 음식주문
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.searchbtn}
+              style={[styles.searchbtn, { backgroundColor: "#FED2CF" }]}
               onPress={() => setInput("택시")}
             >
-              <Text fontFamily={"KCCChassam"} fontSize={12}>
+              <Text color={"#fff"} fontFamily={"KCCChassam"} fontSize={12}>
                 택시
               </Text>
             </TouchableOpacity>

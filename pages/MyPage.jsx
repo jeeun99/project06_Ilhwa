@@ -69,19 +69,21 @@ export default function MyPage({ navigation, route }) {
             </HStack>
           </Box>
 
-          <Box
-            mt="22"
-            bgColor={"#f6f6f6"}
-            w={"100%"}
-            px={4}
-            py={"14"}
-            borderRadius={"20"}
-          >
-            <HStack justifyContent="space-between" alignItems="center">
-              <Text>내 프로필</Text>
-              <Entypo name="chevron-right" size={16} color="#2c2c2c" />
-            </HStack>
-          </Box>
+          <TouchableOpacity>
+            <Box
+              mt="22"
+              bgColor={"#f6f6f6"}
+              w={"100%"}
+              px={4}
+              py={"14"}
+              borderRadius={"20"}
+            >
+              <HStack justifyContent="space-between" alignItems="center">
+                <Text>내 프로필</Text>
+                <Entypo name="chevron-right" size={16} color="#2c2c2c" />
+              </HStack>
+            </Box>
+          </TouchableOpacity>
           <Box
             mt="22"
             bgColor={"#f6f6f6"}
@@ -96,24 +98,24 @@ export default function MyPage({ navigation, route }) {
               alignItems="center"
             >
               <Text>알림받기</Text>
-              <Switch defaultIsChecked colorScheme="rose" size={"sm"} />
+              <Switch defaultIsChecked onTrackColor="#FED2CF" size={"sm"} />
             </HStack>
             <HStack justifyContent="space-between" alignItems="center">
               <Text>다크모드</Text>
-              <Switch colorScheme="rose" size={"sm"} />
+              <Switch onTrackColor="#FED2CF" size={"sm"} />
             </HStack>
           </Box>
           <Box mt="22">
             <TouchableOpacity
               style={{
-                backgroundColor: "#ff5670",
+                backgroundColor: "#FF6A6A",
                 paddingVertical: 10,
                 borderRadius: 30,
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <Text fontFamily={"SUITEBold"} fontSize={14} color={"#fff"}>
+              <Text fontFamily={"SUITEBold"} fontSize={14} color={"#fafafa"}>
                 계정삭제
               </Text>
             </TouchableOpacity>

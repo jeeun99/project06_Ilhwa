@@ -10,6 +10,7 @@ import {
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 import HeaderComponent from "../components/HeaderComponent";
 import SwipeCardComponent from "../components/SwipeCardComponent";
 import data from "../data.json";
@@ -23,6 +24,9 @@ export default function SearchDetailPage({ route, navigation }) {
     setItem(sentence.filter((item) => item.title.includes(input)));
   }, [input]);
   console.log(item);
+  const goSDetail = () => {
+    navigation.navigate("SearchDetailPage", { input: input });
+  };
 
   return (
     <Box style={styles.container}>
@@ -41,12 +45,20 @@ export default function SearchDetailPage({ route, navigation }) {
           borderColor={"#000"}
           borderRadius={10}
           bgColor="#F6F6F6"
-          value={input}
+          placeholder={input}
+          placeholderTextColor="#2c2c2c"
           // variant={"filled"}
         />
-        <TouchableOpacity style={styles.search}>
-          <Entypo name="magnifying-glass" size={24} color="black" />
-        </TouchableOpacity>
+        <LinearGradient
+          style={styles.search}
+          colors={["#FED2CF", "#CDDBF5"]}
+          start={{ x: 0.1, y: 1 }}
+          end={{ x: 1, y: 0 }}
+        >
+          <TouchableOpacity onPress={goSDetail}>
+            <Entypo name="magnifying-glass" size={24} color="white" />
+          </TouchableOpacity>
+        </LinearGradient>
       </HStack>
       <Box px={8} py={4}>
         <Text
