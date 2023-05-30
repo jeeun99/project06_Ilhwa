@@ -115,9 +115,9 @@ function SwipeCardComponent({ item }) {
         onPress={() => setLike(!like)}
         icon={
           like ? (
-            <Entypo name="heart" size={30} color="red" />
+            <Entypo name="heart" size={30} color="#FF6A6A" />
           ) : (
-            <Entypo name="heart-outlined" size={30} color="red" />
+            <Entypo name="heart-outlined" size={30} color="#FF6A6A" />
           )
         }
       />

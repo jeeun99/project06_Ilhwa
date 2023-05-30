@@ -28,7 +28,7 @@ export default function SearchPage({ navigation }) {
   };
   return (
     <Box style={styles.container}>
-      <HeaderComponent navigation={navigation} />
+      <HeaderComponent pgName={"검색"} navigation={navigation} />
       <HStack
         alignItems={"center"}
         justifyContent="space-between"

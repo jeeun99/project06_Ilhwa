@@ -14,6 +14,9 @@ export default function MyPage({ navigation, route }) {
   const goLogin = () => {
     navigation.navigate("SignInPage");
   };
+  const goChangeMyInfo = () => {
+    navigation.navigate("ChangeMyInfo");
+  };
   const [login, setLogin] = useState(true);
 
   return (
@@ -69,7 +72,7 @@ export default function MyPage({ navigation, route }) {
             </HStack>
           </Box>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={goChangeMyInfo}>
             <Box
               mt="22"
               bgColor={"#f6f6f6"}

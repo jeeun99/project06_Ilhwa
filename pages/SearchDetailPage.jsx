@@ -31,7 +31,7 @@ export default function SearchDetailPage({ route, navigation }) {
   return (
     <Box style={styles.container}>
       {/* <Box safeAreaTop /> */}
-      <HeaderComponent navigation={navigation} />
+      <HeaderComponent pgName={"검색"} navigation={navigation} />
       <HStack
         alignItems={"center"}
         justifyContent="space-between"

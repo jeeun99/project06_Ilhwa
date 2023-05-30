@@ -101,9 +101,9 @@ export default function SlideComponent({ data, bgname }) {
             onPress={() => setLike(!like)}
             icon={
               like ? (
-                <Entypo name="heart" size={24} color="red" />
+                <Entypo name="heart" size={24} color="#FF6A6A" />
               ) : (
-                <Entypo name="heart-outlined" size={24} color="red" />
+                <Entypo name="heart-outlined" size={24} color="#FF6A6A" />
               )
             }
           />
