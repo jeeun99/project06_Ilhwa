@@ -1,4 +1,13 @@
-import { Box, Text, Switch, Image, HStack, VStack } from "native-base";
+import {
+  Box,
+  Text,
+  Switch,
+  Image,
+  HStack,
+  VStack,
+  Modal,
+  Button,
+} from "native-base";
 import { TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 import { useState } from "react";
@@ -10,6 +19,8 @@ const mypageImage = require("../assets/img/mypageimg.png");
 
 export default function MyPage({ navigation, route }) {
   // console.log(route);
+  const [showModal, setShowModal] = useState(false);
+  const [login, setLogin] = useState(true);
 
   const goLogin = () => {
     navigation.navigate("SignInPage");
@@ -17,7 +28,6 @@ export default function MyPage({ navigation, route }) {
   const goChangeMyInfo = () => {
     navigation.navigate("ChangeMyInfo");
   };
-  const [login, setLogin] = useState(true);
 
   return (
     <Box style={styles.container}>
@@ -71,7 +81,6 @@ export default function MyPage({ navigation, route }) {
               </VStack>
             </HStack>
           </Box>
-
           <TouchableOpacity onPress={goChangeMyInfo}>
             <Box
               mt="22"
@@ -117,12 +126,72 @@ export default function MyPage({ navigation, route }) {
                 alignItems: "center",
                 justifyContent: "center",
               }}
+              onPress={() => setShowModal(true)}
             >
               <Text fontFamily={"SUITEBold"} fontSize={14} color={"#fafafa"}>
                 계정삭제
               </Text>
             </TouchableOpacity>
           </Box>
+          {/* modal */}
+          <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+            <Modal.Content maxWidth="350" maxH="212">
+              <Modal.Header>
+                <Text
+                  fontFamily={"SUITEBold"}
+                  fontSize={16}
+                  textAlign={"center"}
+                >
+                  계정 삭제
+                </Text>
+              </Modal.Header>
+              <Modal.Body>
+                <Text
+                  fontFamily={"SUITERegular"}
+                  fontSize={16}
+                  textAlign={"center"}
+                >
+                  삭제한 계정은 복구할 수 없습니다.
+                </Text>
+                <Text
+                  fontFamily={"SUITERegular"}
+                  fontSize={16}
+                  textAlign={"center"}
+                >
+                  정말 삭제하시겠습니까?
+                </Text>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button.Group space={2}>
+                  <Button
+                    variant="ghost"
+                    colorScheme="blueGray"
+                    onPress={() => {
+                      setShowModal(false);
+                    }}
+                  >
+                    취소
+                  </Button>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setShowModal(false);
+                      setTimeout(() => {
+                        goLogin();
+                      }, 500);
+                    }}
+                    style={{
+                      backgroundColor: "#FF6A6A",
+                      justifyContent: "center",
+                      paddingHorizontal: 24,
+                      borderRadius: 8,
+                    }}
+                  >
+                    <Text color={"#fafafa"}>삭제</Text>
+                  </TouchableOpacity>
+                </Button.Group>
+              </Modal.Footer>
+            </Modal.Content>
+          </Modal>
         </Box>
       ) : (
         <Box px={8}>

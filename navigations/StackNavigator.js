@@ -19,6 +19,8 @@ import ChangeMyInfo from "../pages/ChangeMyInfo";
 import Question01 from "../pages/Question01";
 import Question02 from "../pages/Question02";
 import Question03 from "../pages/Question03";
+import LikeSentencePage from "../pages/LikeSentencePage";
+import WrongQPage from "../pages/WrongQPage";
 //스택 네비게이션 라이브러리가 제공해주는 여러 기능이 담겨있는 객체를 사용합니다
 //항상 상단에 선언하고 시작하는게 규칙
 const Stack = createStackNavigator();
@@ -43,6 +45,8 @@ const StackNavigator = () => {
       <Stack.Screen name="Question01" component={Question01} />
       <Stack.Screen name="Question02" component={Question02} />
       <Stack.Screen name="Question03" component={Question03} />
+      <Stack.Screen name="LikeSentencePage" component={LikeSentencePage} />
+      <Stack.Screen name="WrongQPage" component={WrongQPage} />
     </Stack.Navigator>
   );
 };

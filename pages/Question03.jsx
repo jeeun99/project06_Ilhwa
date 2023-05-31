@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Text } from "native-base";
+import { Box, Flex, HStack, Text, Modal } from "native-base";
 import { useEffect, useState } from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { Entypo } from "@expo/vector-icons";
@@ -7,6 +7,14 @@ import HeaderComponent from "../components/HeaderComponent";
 import CheckAnswerComponent from "../components/CheckAnswerComponent";
 
 export default function Question03({ navigation }) {
+  const [showModal, setShowModal] = useState(false);
+  const goQuestion1 = () => {
+    navigation.navigate("Question01");
+  };
+  const goStudy = () => {
+    navigation.navigate("TabNavigator");
+  };
+
   return (
     <Box flex={1}>
       <LinearGradient
@@ -71,7 +79,10 @@ export default function Question03({ navigation }) {
                 힌트보기
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.btn, styles.send]}>
+            <TouchableOpacity
+              onPress={() => setShowModal(true)}
+              style={[styles.btn, styles.send]}
+            >
               <Text fontFamily={"SUITERegular"} fontSize="16" color={"#2c2c2c"}>
                 제출하기
               </Text>
@@ -79,6 +90,60 @@ export default function Question03({ navigation }) {
           </HStack>
         </Box>
       </LinearGradient>
+      {/* modal */}
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+        <Modal.Content maxWidth="350" maxH="212">
+          <LinearGradient
+            colors={["#FED2CF", "#CDDBF5"]}
+            start={{ x: 0.1, y: 1 }}
+            end={{ x: 1, y: 0 }}
+          >
+            <Modal.Header style={{ backgroundColor: "transparent" }}>
+              <Text
+                fontFamily={"SUITERegular"}
+                fontSize={16}
+                textAlign={"center"}
+              >
+                정답입니다!
+              </Text>
+            </Modal.Header>
+          </LinearGradient>
+
+          <TouchableOpacity onPress={goQuestion1}>
+            <Box
+              w={"100%"}
+              h={"60px"}
+              justifyContent={"center"}
+              borderBottomColor="#656565"
+              borderBottomWidth={0.5}
+            >
+              <Text
+                fontFamily={"SUITERegular"}
+                fontSize={16}
+                textAlign={"center"}
+              >
+                다음 문제 풀기
+              </Text>
+            </Box>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={goStudy}>
+            <Box
+              w={"100%"}
+              h={"60px"}
+              alignItems="center"
+              justifyContent={"center"}
+            >
+              <Text
+                fontFamily={"SUITERegular"}
+                fontSize={16}
+                textAlign={"center"}
+              >
+                학습 화면 돌아가기
+              </Text>
+            </Box>
+          </TouchableOpacity>
+        </Modal.Content>
+      </Modal>
     </Box>
   );
 }

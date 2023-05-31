@@ -12,7 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Entypo } from "@expo/vector-icons";
 import { useEffect } from "react";
 
-function SwipeCardComponent({ item }) {
+function SwipeCardComponent({ item, num, navigation, route }) {
   // console.log(item);
   const swipeAnimation = useRef(new Animated.Value(0)).current;
   const [like, setLike] = useState(false);
@@ -55,6 +55,28 @@ function SwipeCardComponent({ item }) {
     })
   ).current;
 
+  const [leftBg, setLeftBg] = useState("");
+  const [rightBg, setRightBg] = useState("");
+  useEffect(() => {
+    if (num == "0") {
+      setLeftBg("#FFF0EF");
+      setRightBg("#FED2CF");
+    } else if (num == "1") {
+      setLeftBg("#E2ECFF");
+      setRightBg("#CDDBF5");
+    } else if (num == "2") {
+      setLeftBg("#D7F5DC");
+      setRightBg("#BDE2C3");
+    } else if (num == "3") {
+      setLeftBg("#FFEFC7");
+      setRightBg("#FFC480");
+    }
+
+    if (route.name == "LikeSentencePage") {
+      setLike(true);
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <Animated.View
@@ -67,7 +89,7 @@ function SwipeCardComponent({ item }) {
         {...panResponder.panHandlers}
       >
         <HStack w={"100%"}>
-          <HStack w={"60%"} p={3} alignItems={"center"} bgColor="#FFF0EF">
+          <HStack w={"60%"} p={3} alignItems={"center"} bgColor={leftBg}>
             <TouchableOpacity style={{ height: 32, width: 32 }}>
               <LinearGradient
                 colors={["#FED2CF", "#CDDBF5"]}
@@ -85,10 +107,10 @@ function SwipeCardComponent({ item }) {
               </LinearGradient>
             </TouchableOpacity>
             <VStack pl={2} mr={"6"}>
-              <Text fontFamily="SUITERegular" fontSize="9" color={"#656565"}>
+              <Text fontFamily="SUITERegular" fontSize="12" color={"#656565"}>
                 {item.descjp}
               </Text>
-              <Text fontFamily="SUITERegular" fontSize="12" color={"#2c2c2c"}>
+              <Text fontFamily="SUITERegular" fontSize="14" color={"#2c2c2c"}>
                 {item.translation}
               </Text>
             </VStack>
@@ -97,12 +119,12 @@ function SwipeCardComponent({ item }) {
             borderTopRightRadius={10}
             borderBottomRightRadius={10}
             w={"40%"}
-            bgColor="#FED2CF"
+            bgColor={rightBg}
             justifyContent={"center"}
             alignItems="center"
             px={2}
           >
-            <Text fontFamily="KCCChassam" fontSize="12" color={"#2c2c2c"}>
+            <Text fontFamily="KCCChassam" fontSize="14" color={"#2c2c2c"}>
               {item.descko}
             </Text>
           </Box>
@@ -111,13 +133,12 @@ function SwipeCardComponent({ item }) {
       <IconButton
         position="absolute"
         right={2}
-        top={1}
         onPress={() => setLike(!like)}
         icon={
           like ? (
-            <Entypo name="heart" size={30} color="#FF6A6A" />
+            <Entypo name="heart" size={26} color="#FF6A6A" />
           ) : (
-            <Entypo name="heart-outlined" size={30} color="#FF6A6A" />
+            <Entypo name="heart-outlined" size={26} color="#FF6A6A" />
           )
         }
       />
@@ -129,14 +150,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     position: "relative",
   },
   card: {
     flex: 1,
     flexDirection: "row",
-    height: 60,
     zIndex: 10,
   },
   heartContainer: {

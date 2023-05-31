@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Input, Text } from "native-base";
+import { Box, Flex, HStack, Input, Text, Modal } from "native-base";
 import { useEffect, useState } from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { Entypo } from "@expo/vector-icons";
@@ -7,6 +7,13 @@ import HeaderComponent from "../components/HeaderComponent";
 import CheckAnswerComponent from "../components/CheckAnswerComponent";
 
 export default function Question02({ navigation }) {
+  const [showModal, setShowModal] = useState(false);
+  const goStudy = () => {
+    navigation.navigate("TabNavigator");
+  };
+  const goQuestion3 = () => {
+    navigation.navigate("Question03");
+  };
   return (
     <Box flex={1}>
       <LinearGradient
@@ -77,7 +84,10 @@ export default function Question02({ navigation }) {
                 힌트보기
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.btn, styles.send]}>
+            <TouchableOpacity
+              onPress={() => setShowModal(true)}
+              style={[styles.btn, styles.send]}
+            >
               <Text fontFamily={"SUITERegular"} fontSize="16" color={"#2c2c2c"}>
                 제출하기
               </Text>
@@ -85,6 +95,92 @@ export default function Question02({ navigation }) {
           </HStack>
         </Box>
       </LinearGradient>
+      {/* modal */}
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+        <Modal.Content maxWidth="350" maxH="250">
+          <LinearGradient
+            colors={["#FED2CF", "#CDDBF5"]}
+            start={{ x: 0.1, y: 1 }}
+            end={{ x: 1, y: 0 }}
+          >
+            <Modal.Header style={{ backgroundColor: "transparent" }}>
+              <Text
+                fontFamily={"SUITERegular"}
+                fontSize={16}
+                textAlign={"center"}
+              >
+                오답입니다
+              </Text>
+            </Modal.Header>
+          </LinearGradient>
+          <Box
+            w={"100%"}
+            h={"60px"}
+            justifyContent={"center"}
+            borderBottomColor="#656565"
+            borderBottomWidth={0.5}
+          >
+            <HStack justifyContent={"center"} alignItems="center">
+              <Text fontFamily={"SUITERegular"} fontSize="16">
+                정답{"    "}
+              </Text>
+              <Box
+                w="20px"
+                h="20px"
+                borderRadius={"30px"}
+                backgroundColor={"#79A8FF"}
+                alignItems={"center"}
+                justifyContent="center"
+                mr={2}
+              >
+                <Text
+                  color={"#fafafa"}
+                  fontFamily={"SUITERegular"}
+                  fontSize="14"
+                >
+                  1
+                </Text>
+              </Box>
+              <Text fontFamily={"SUITERegular"} fontSize="16" color={"#79A8FF"}>
+                코레와도코데스카?
+              </Text>
+            </HStack>
+          </Box>
+          <TouchableOpacity onPress={goQuestion3}>
+            <Box
+              w={"100%"}
+              h={"60px"}
+              justifyContent={"center"}
+              borderBottomColor="#656565"
+              borderBottomWidth={0.5}
+            >
+              <Text
+                fontFamily={"SUITERegular"}
+                fontSize={16}
+                textAlign={"center"}
+              >
+                다음 문제 풀기
+              </Text>
+            </Box>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={goStudy}>
+            <Box
+              w={"100%"}
+              h={"60px"}
+              alignItems="center"
+              justifyContent={"center"}
+            >
+              <Text
+                fontFamily={"SUITERegular"}
+                fontSize={16}
+                textAlign={"center"}
+              >
+                학습 화면 돌아가기
+              </Text>
+            </Box>
+          </TouchableOpacity>
+        </Modal.Content>
+      </Modal>
     </Box>
   );
 }

@@ -1,75 +1,49 @@
-import {
-  Box,
-  Text,
-  HStack,
-  Input,
-  Flex,
-  IconButton,
-  Center,
-} from "native-base";
-import { TouchableOpacity, StyleSheet, ScrollView } from "react-native";
-import { Entypo } from "@expo/vector-icons";
+import { Box } from "native-base";
 import { useEffect, useState } from "react";
-import { LinearGradient } from "expo-linear-gradient";
-import HeaderComponent from "../components/HeaderComponent";
+import { ScrollView } from "react-native";
 import SwipeCardComponent from "../components/SwipeCardComponent";
-import data from "../data.json";
+import datas from "../data.json";
 
-export default function SearchDetailPage({ route, navigation }) {
-  const sentence = data.datas;
-  const [item, setItem] = useState([]);
-  //   console.log(route);
-  const input = route.params.input;
+export default function LikeSentencePage({ navigation, route }) {
+  const data = datas.datas;
+  const [allData, setAllData] = useState([]);
+  const accoData = data.filter((item) => item.category === "숙박");
+  const foodData = data.filter((item) => item.category === "음식");
+  const trafficData = data.filter((item) => item.category === "교통");
+  const shoppingData = data.filter((item) => item.category === "쇼핑");
   useEffect(() => {
-    setItem(sentence.filter((item) => item.title.includes(input)));
-  }, [input]);
-  // console.log(item);
-  const goSDetail = () => {
-    navigation.navigate("SearchDetailPage", { input: input });
-  };
+    navigation.setOptions({
+      title: "담은 문장",
+      headerShown: true,
+      headerStyle: {
+        backgroundColor: "#fff",
+        height: 85,
+        shadowColor: "transparent",
+        borderBottomWidth: 0.3,
+        borderBottomColor: "#2c2c2c",
+      },
+      headerTitleStyle: {
+        fontSize: 16,
+        fontFamily: "SUITEBold",
+        justifyContent: "center",
+      },
+      headerTintColor: "#2C2C2C",
+      headerTitleAlign: "center",
+    });
+    const tempData = [];
+    for (let i = 0; i < 3; i++) {
+      tempData.push(accoData[i]);
+      tempData.push(foodData[i]);
+      tempData.push(trafficData[i]);
+      tempData.push(shoppingData[i]);
+    }
+    setAllData(tempData);
+  }, []);
 
   return (
-    <ScrollView style={styles.container}>
-      {/* <Box safeAreaTop /> */}
-      <HeaderComponent pgName={"검색"} navigation={navigation} />
-      <HStack
-        alignItems={"center"}
-        justifyContent="space-between"
-        mt={8}
-        px={8}
-      >
-        <Input
-          width={"80%"}
-          borderWidth={1}
-          borderStyle="dashed"
-          borderColor={"#000"}
-          borderRadius={10}
-          bgColor="#F6F6F6"
-          placeholder={input}
-          placeholderTextColor="#2c2c2c"
-          // variant={"filled"}
-        />
-        <LinearGradient
-          style={styles.search}
-          colors={["#FED2CF", "#CDDBF5"]}
-          start={{ x: 0.1, y: 1 }}
-          end={{ x: 1, y: 0 }}
-        >
-          <TouchableOpacity onPress={goSDetail}>
-            <Entypo name="magnifying-glass" size={24} color="white" />
-          </TouchableOpacity>
-        </LinearGradient>
-      </HStack>
-      <Box px={8} py={4}>
-        <Text
-          pb={"10px"}
-          fontFamily="SUITERegular"
-          fontSize="16"
-          color={"#2c2c2c"}
-        >
-          검색결과
-        </Text>
-        {item.map((item, i) => {
+    <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <Box mx={8} my={5}>
+        {allData.map((item, i) => {
           if (i % 4 === 0) {
             return (
               <Box
@@ -156,25 +130,3 @@ export default function SearchDetailPage({ route, navigation }) {
     </ScrollView>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    flex: 1,
-    backgroundColor: "white",
-  },
-  searchbtn: {
-    backgroundColor: "#FED2CF",
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    marginRight: 16,
-    borderRadius: 16,
-  },
-  search: {
-    width: 40,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: "#fed2cf",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

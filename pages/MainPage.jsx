@@ -39,6 +39,14 @@ export default function MainPage({ navigation }) {
   const goTraffic = () => {
     navigation.navigate("TrafficPage");
   };
+
+  const goWrong = () => {
+    navigation.navigate("WrongQPage");
+  };
+  const golikeSentence = () => {
+    navigation.navigate("LikeSentencePage");
+  };
+
   const handleSliderChange = (newValue) => {
     // 슬라이더 값 변경을 막기 위해 아무 작업도 하지 않습니다.
   };
@@ -53,7 +61,7 @@ export default function MainPage({ navigation }) {
           </Text>
           <Box>
             <HStack>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={goWrong}>
                 <HStack mr={8} alignItems={"center"}>
                   <Box
                     justifyContent={"center"}
@@ -80,7 +88,7 @@ export default function MainPage({ navigation }) {
                   />
                 </HStack>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={golikeSentence}>
                 <HStack alignItems={"center"}>
                   <Box
                     justifyContent={"center"}

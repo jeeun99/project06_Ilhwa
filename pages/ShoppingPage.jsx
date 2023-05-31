@@ -6,7 +6,7 @@ import datas from "../data.json";
 import { ScrollView } from "react-native";
 import SlideComponent from "../components/SlideComponent";
 
-export default function ShoppingPage({ navigation }) {
+export default function ShoppingPage({ navigation, route }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -54,21 +54,87 @@ export default function ShoppingPage({ navigation }) {
         <Box my={4}>
           <Text>필수 어휘</Text>
           {shopping.map((item, i) => {
-            return (
-              <Box
-                key={i}
-                backgroundColor={"#F6F6F6"}
-                w={"100%"}
-                h="60px"
-                overflow={"hidden"}
-                borderRadius="10"
-                style={{
-                  marginTop: 12,
-                }}
-              >
-                <SwipeCardComponent item={item} />
-              </Box>
-            );
+            if (i % 4 === 0) {
+              return (
+                <Box
+                  key={i}
+                  backgroundColor={"#F6F6F6"}
+                  w={"100%"}
+                  overflow={"hidden"}
+                  borderRadius="10"
+                  style={{
+                    marginTop: 12,
+                  }}
+                >
+                  <SwipeCardComponent
+                    route={route}
+                    navigation={navigation}
+                    num={"0"}
+                    item={item}
+                  />
+                </Box>
+              );
+            } else if (i % 4 === 1) {
+              return (
+                <Box
+                  key={i}
+                  backgroundColor={"#F6F6F6"}
+                  w={"100%"}
+                  overflow={"hidden"}
+                  borderRadius="10"
+                  style={{
+                    marginTop: 12,
+                  }}
+                >
+                  <SwipeCardComponent
+                    route={route}
+                    navigation={navigation}
+                    num={"1"}
+                    item={item}
+                  />
+                </Box>
+              );
+            } else if (i % 4 === 2) {
+              return (
+                <Box
+                  key={i}
+                  backgroundColor={"#F6F6F6"}
+                  w={"100%"}
+                  overflow={"hidden"}
+                  borderRadius="10"
+                  style={{
+                    marginTop: 12,
+                  }}
+                >
+                  <SwipeCardComponent
+                    route={route}
+                    navigation={navigation}
+                    num={"2"}
+                    item={item}
+                  />
+                </Box>
+              );
+            } else if (i % 4 === 3) {
+              return (
+                <Box
+                  key={i}
+                  backgroundColor={"#F6F6F6"}
+                  w={"100%"}
+                  overflow={"hidden"}
+                  borderRadius="10"
+                  style={{
+                    marginTop: 12,
+                  }}
+                >
+                  <SwipeCardComponent
+                    route={route}
+                    navigation={navigation}
+                    num={"3"}
+                    item={item}
+                  />
+                </Box>
+              );
+            }
           })}
         </Box>
       </Box>
