@@ -2,6 +2,8 @@
 
 React-Native를 활용한 모바일 어플리케이션 개발
 
+<img src='https://raw.githubusercontent.com/jeeun99/project06_Ilhwa/master/assets/mockup/MockupImage.jpg' alt='demo' />
+
 ## 🙋 프로젝트 소개
 
 React-Native 학습을 목적으로 한 프로젝트입니다.
@@ -30,7 +32,7 @@ firebase를 이용해 회원가입, 로그인 및 계정 삭제 기능을 구현
 
 `Adobe Photoshop, Adobe Illustrator` 을 이용해 로고 및 이미지 편집을 진행하였습니다.
 
-### 📚 사용 언어
+### 📚 사용 기술
 
 <img src="https://img.shields.io/badge/react-61DAFB?style=flat&logo=react&logoColor=black"/> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=black"/> <img src="https://img.shields.io/badge/expo-000020?style=flat&logo=expo&logoColor=white"/>
 
@@ -39,4 +41,8 @@ firebase를 이용해 회원가입, 로그인 및 계정 삭제 기능을 구현
 ### 🔗 링크 모음
 
 Figma 링크: [Tokyo Inside ; 우리들의 일화 디자인](https://www.figma.com/file/NKqsesXbQ5nLG3nyffCVH4/%EC%9D%B4%EC%A0%9C%EC%9D%80_6%EC%B0%A8?type=design&node-id=0%3A1&t=5o28eD49usTcC4Mk-1)
+
 약식 제안서: 아래 이미지 클릭시 프레젠테이션으로 이동됩니다.
+<a href='https://docs.google.com/presentation/d/1YXDaC8fPEJpFl2FaTKY5MkpjITmY3ZiQWnCmaMLrT2k/edit#slide=id.g24d3a29c135_0_15'>
+<img src='https://github.com/jeeun99/project06_Ilhwa/blob/master/assets/mockup/20230602_145555.png?raw=true' alt='pptimg'>
+</a>
