@@ -2,7 +2,7 @@ import React from "react";
 import { Input, Box } from "native-base";
 import { StyleSheet } from "react-native";
 
-export default function SignInInput({ title }) {
+export default function SignInInput({ title, type, setFunc, error }) {
   return (
     <Box mt="20px">
       <Input
@@ -10,6 +10,11 @@ export default function SignInInput({ title }) {
         variant="underlined"
         placeholder={title}
         style={styles.inputStyle}
+        type={type}
+        onChangeText={(text) => {
+          text = text.trim();
+          setFunc(text);
+        }}
       />
     </Box>
   );

@@ -15,11 +15,31 @@ import SignUpInput from "../components/SignUpInput";
 
 const bgImg = require("../assets/img/signupbg.png");
 
+import { auth, db } from "../config/firebase";
+import { where, getDocs, collection, query } from "firebase/firestore";
+
 export default function ChangeMyInfo({ navigation }) {
   const [service, setService] = useState("");
   const goMyPage = () => {
     navigation.navigate("TabNavigator");
   };
+  const duplicateCheck = async () => {
+    const q = query(collection(db, "users"), where("nickName", "==", nickName));
+    const snapshot = await getDocs(q);
+    if (snapshot.empty) {
+      Alert.alert("중복확인", "사용가능한 이름입니다.");
+    } else {
+      setNickNameError("이미 존재하는 닉네임입니다.");
+      return false;
+    }
+  };
+
+  // const uid = auth.currentUser.uid;
+  // const changeInfo = async () => {
+  //   console.log(uid);
+  //   const docSnap = await getDoc(doc(db, "users", uid));
+  //   const userData = docSnap.data();
+  // };
   return (
     <ImageBackground source={bgImg} style={styles.bgImage}>
       <Box mt={8} px={8} style={styles.container}>
@@ -60,19 +80,19 @@ export default function ChangeMyInfo({ navigation }) {
             <Text style={styles.titleText}>닉네임</Text>
             <HStack justifyContent="space-between" alignItems="center">
               <SignUpInput w={"68%"} title={"닉네임"} />
-              <TouchableOpacity style={styles.btnj}>
+              <TouchableOpacity style={styles.btnj} onPress={duplicateCheck}>
                 <Text color={"black"} fontFamily={"SUITERegular"} fontSize={12}>
                   중복확인
                 </Text>
               </TouchableOpacity>
             </HStack>
           </Box>
-          <Box mt={8}>
+          {/* <Box mt={2}>
             <Text style={styles.titleText}>이메일</Text>
             <HStack justifyContent="space-between" alignItems="center">
               <SignUpInput w={"47%"} title={"이메일"} />
-              <Text>@</Text>
-              <Box w={"47%"}>
+              <Text mt={-4}>@</Text>
+              <Box mt={-4} w={"47%"}>
                 <Select
                   selectedValue={service}
                   accessibilityLabel="Choose"
@@ -97,8 +117,8 @@ export default function ChangeMyInfo({ navigation }) {
                 </Select>
               </Box>
             </HStack>
-          </Box>
-          <Box mt={8}>
+          </Box> */}
+          <Box mt={2}>
             <Text style={styles.titleText}>비밀번호</Text>
             <VStack justifyContent="space-between" alignItems="center">
               <SignUpInput w={"100%"} title={"비밀번호"} />
@@ -154,7 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   btnSignUp: {
-    marginTop: 32,
+    marginTop: 16,
     paddingVertical: 12,
     borderRadius: 50,
   },

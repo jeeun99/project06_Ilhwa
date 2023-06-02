@@ -10,8 +10,22 @@ import {
 } from "native-base";
 import { TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import { Ionicons, Entypo } from "@expo/vector-icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LinearGradient } from "expo-linear-gradient";
+
+import { auth, db } from "../config/firebase";
+import { deleteUser, signOut } from "firebase/auth";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const bgImg = require("../assets/img/signupbg.png");
 const pagelogo = require("../assets/img/pagelogo.png");
@@ -28,6 +42,38 @@ export default function MyPage({ navigation, route }) {
   const goChangeMyInfo = () => {
     navigation.navigate("ChangeMyInfo");
   };
+  const deleteUserInfo = async () => {
+    const uid = auth.currentUser.uid;
+    await deleteDoc(doc(db, "users", uid));
+    deleteUser(auth.currentUser)
+      .then(() => {
+        AsyncStorage.removeItem("session");
+        navigation.push("SignInPage");
+      })
+      .catch((error) => console.log("delete error", error));
+  };
+
+  // 로그아웃 기능 함수
+  const logoutFunc = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("로그아웃");
+        AsyncStorage.removeItem("session");
+        navigation.push("SignInPage");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    AsyncStorage.getItem("session", (err, result) => {
+      console.log("마이페이지 저장통", result);
+      if (result) {
+        setLogin(true);
+      } else {
+        setLogin(false);
+      }
+    });
+  }, []);
 
   return (
     <Box style={styles.container}>
@@ -65,7 +111,7 @@ export default function MyPage({ navigation, route }) {
                 <Text fontSize={16} color="#2c2c2c" fontFamily={"SUITEBold"}>
                   000님
                 </Text>
-                <TouchableOpacity onPress={goLogin}>
+                <TouchableOpacity onPress={logoutFunc}>
                   <HStack alignItems="center" justifyContent="center">
                     <Text
                       fontSize={14}
@@ -176,7 +222,7 @@ export default function MyPage({ navigation, route }) {
                     onPress={() => {
                       setShowModal(false);
                       setTimeout(() => {
-                        goLogin();
+                        deleteUserInfo();
                       }, 500);
                     }}
                     style={{

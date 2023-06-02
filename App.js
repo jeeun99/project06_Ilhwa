@@ -34,7 +34,7 @@ export default function App() {
         ...Ionicons.font,
       });
       setReady(true);
-    }, 1000);
+    }, 1200);
   };
   useEffect(() => {
     loadFont();
