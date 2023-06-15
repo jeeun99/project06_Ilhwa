@@ -18,8 +18,6 @@ expo, native-base, native navigation 등을 활용하여 프로젝트를 진행�
 
 프로젝트 기술 및 화면 구현은 직접 진행했습니다.
 
-firebase를 이용해 회원가입, 로그인 및 계정 삭제 기능을 구현했습니다.
-
 ---
 
 ### ⌛ 개발 기간
@@ -37,6 +35,16 @@ firebase를 이용해 회원가입, 로그인 및 계정 삭제 기능을 구현
 ### 📚 사용 기술
 
 <img src="https://img.shields.io/badge/react-61DAFB?style=flat&logo=react&logoColor=black"/> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=black"/> <img src="https://img.shields.io/badge/expo-000020?style=flat&logo=expo&logoColor=white"/>
+
+---
+
+### 💬 참고사항
+
+firebase를 이용해 회원가입, 로그인 및 계정 삭제 기능을 구현했습니다.
+
+Android Studio Emulator로 시안을 확인하며 개발을 진행했습니다. 
+
+더미 데이터를 직접 제작해 카테고리별 회화 리스트를 나타냈습니다. 
 
 ---
 
